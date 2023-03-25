@@ -1,0 +1,9 @@
+.App {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+@media (max-width: 800px) {
+  .App {
+    max-width: 100%;
+  }
+}  

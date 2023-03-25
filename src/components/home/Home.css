@@ -1,0 +1,25 @@
+.home_main_text {
+    margin-top: 35px;
+    font-size: 30px;
+    text-align: center;
+}
+.home_text {
+    margin-top: 15px;
+    font-size: 24px;
+    font-weight: 30px;
+    text-align: center;
+}
+.home_cats img {
+    margin-top: 50px;
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+@media (max-width: 500px) {
+    .home_cats img {
+        width: 300px;
+        height: 300px;
+    }
+}  
