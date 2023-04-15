@@ -29,7 +29,7 @@ const FavoriteCat = (props) => {
   const setFavHandler = (e) => {
     e.preventDefault();
     setStatus(true);
-    toogleClass(props.img_id);
+    // toogleClass(props.img_id);
     fetch("https://api.thecatapi.com/v1/favourites", {
       method: "POST",
       headers: {
@@ -44,7 +44,7 @@ const FavoriteCat = (props) => {
   const delFavHandler = (e) => {
     e.preventDefault();
     setStatus(false);
-    toogleClass(props.img_id);
+    // toogleClass(props.img_id);
     fetch(`https://api.thecatapi.com/v1/favourites/${favId}`, {
       method: "DELETE",
       headers: {
@@ -54,10 +54,10 @@ const FavoriteCat = (props) => {
     });
   };
 
-  const toogleClass = (id) => {
-    const elem = React.findDOMNode(id);
-    console.log(elem);
-  }
+  // const toogleClass = (id) => {
+  //   const elem = React.findDOMNode(id);
+  //   console.log(elem);
+  // }
 
   return (
       <div>

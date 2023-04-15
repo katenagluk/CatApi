@@ -50,7 +50,6 @@ const Gallery = () => {
       .catch(() => setError(true));
   }, []);
 
-
   useEffect(() => {
     fetch("https://api.thecatapi.com/v1/favourites", {
       method: "GET",
@@ -85,25 +84,53 @@ const Gallery = () => {
       .catch(() => setError(true))
       .finally(() => setIsLoaded(true));
   }
+  // УДАЛИТЬ КОТА
+  function deleteCat(imageId) {
+    fetch(`https://api.thecatapi.com/v1/images/${imageId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key":
+          "live_dYHf3iFyok61AqOdlGNYnmK0d1YmYFaIfgRiFaK1D8j4chgYykRaBrpCyruYSCmF",
+      },
+    }).then(() => {
+      const updatedImages = images.filter((image) => image.id !== imageId);
+      setImages(updatedImages);
+    });
+    // удаление котика
+    // const index = data.findIndex(elem => elem.imageId === imageId);
+    // const before = data.slice(0, index);
+    // const after = data.slice(index + 1);
+    // const newArr = [...before, ...after];
+    // return {
+    //   data: newArr
+    // }
+  }
 
   // map - создает новый массив из данных
   const items = images.map((image) => {
     return (
-        <div key={image.id} className="gallery_wrapper">
-          <div className="gallery_item">
-            <img
-              className={"grey"}
-              src={image.url}
-              alt={image.id}
-            />
+      <div key={image.id} className="gallery_wrapper">
+        <div className="gallery_item">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              deleteCat(image.id);
+            }}
+            className="delete_button"
+          >
+            Delete cat
+          </button>
+          <img className={"grey"} src={image.url} alt={image.id} />
 
-            {/* <img className="grey" src={image.url} alt={image.id} /> */}
-            <FavoriteCat img_id={image.id} favs={favorites} />
-            <VoteCat img_id={image.id} subId={SUB_ID} votes={votes} />
-          </div>
+          {/* <img className="grey" src={image.url} alt={image.id} /> */}
+          <FavoriteCat img_id={image.id} favs={favorites} />
+          <VoteCat img_id={image.id} subId={SUB_ID} votes={votes} />
         </div>
+      </div>
     );
   });
+  
 
   return (
     <>
